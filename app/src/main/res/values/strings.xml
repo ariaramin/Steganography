@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">steganography</string>
+
+    <string name="decode">decode</string>
+    <string name="encode">encode</string>
+
+    <string name="gallery">gallery</string>
+    <string name="camera">camera</string>
+</resources>
