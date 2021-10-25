@@ -4,6 +4,7 @@
     <string name="decode">decode</string>
     <string name="encode">encode</string>
 
+    <string name="save">save</string>
     <string name="gallery">gallery</string>
     <string name="camera">camera</string>
 </resources>
