@@ -6,56 +6,45 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
     android:padding="15dp"
-    tools:context=".EncodeActivity">
+    tools:context=".DecodeSelectImageActivity">
 
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/encode"
+        android:text="Select image"
         android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/encodeImageView"
+        android:id="@+id/decodeSelectImageView"
         android:layout_width="347dp"
         android:layout_height="373dp"
-        app:layout_constraintBottom_toTopOf="@+id/messageEditText"
+        app:layout_constraintBottom_toTopOf="@+id/decodeGalleryButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:srcCompat="@drawable/default_image" />
-
-    <EditText
-        android:id="@+id/messageEditText"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:ems="10"
-        android:hint="@string/message_hint"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/saveButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.87" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/decodeGalleryButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/save"
+        android:text="@string/gallery"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

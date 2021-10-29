@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         encodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), EncodeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EncodeSelectImageActivity.class);
                 startActivity(intent);
             }
         });
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         decodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), DecodeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DecodeSelectImageActivity.class);
                 startActivity(intent);
             }
         });

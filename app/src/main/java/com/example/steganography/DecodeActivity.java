@@ -9,10 +9,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,29 +22,23 @@ public class DecodeActivity extends AppCompatActivity {
 
     // Initialize variables
     ImageView image;
-    Button decodeBtn, galleryBtn;
-    TextView txtMessage;
+    Button decodeBtn;
+    TextView messageText;
     Bitmap capturedImage;
+    Bundle extra;
 
-    static final int REQUEST_IMAGE_Gallery = 1;
+    static final int REQUEST_IMAGE_GALLERY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_decode);
 
-        image = findViewById(R.id.imageView);
-        decodeBtn = findViewById(R.id.decodeButton);
-        galleryBtn = findViewById(R.id.galleryButton);
-        txtMessage = findViewById(R.id.messageTextView);
+        image = findViewById(R.id.decodeImageView);
+        decodeBtn = findViewById(R.id.decodeMessageButton);
+        messageText = findViewById(R.id.messageTextView);
 
-
-        galleryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                galleryIntent();
-            }
-        });
+        getExtra();
 
         decodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,11 +48,20 @@ public class DecodeActivity extends AppCompatActivity {
         });
     }
 
-    private void galleryIntent() {
-        // Get image from gallery
-        Intent getImage = new Intent(Intent.ACTION_PICK);
-        getImage.setType("image/*");
-        startActivityForResult(getImage, REQUEST_IMAGE_Gallery);
+    private void getExtra() {
+        extra = getIntent().getExtras();
+        Uri imageUri = (Uri) extra.get("imageUri");
+        try {
+            InputStream imageStream = getContentResolver().openInputStream(imageUri);
+            Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+            // Copy image and change mutable status
+            capturedImage = selectedImage.copy(Bitmap.Config.ARGB_8888, true);
+            capturedImage.setHasAlpha(true);
+            // Set image to ImageView
+            image.setImageBitmap(capturedImage);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void decodeMessage() {
@@ -69,11 +70,11 @@ public class DecodeActivity extends AppCompatActivity {
             for (int j = 0; j < capturedImage.getHeight(); j++) {
                 for (int i = 0; i < capturedImage.getWidth(); i++) {
                     int color = capturedImage.getPixel(i, j);
-                    char alpha = (char) (Color.alpha(color) - 120);
-                    Log.i("decode", String.format("i(%d),j(%d): %s", i, j, alpha));
+                    char alpha = (char) Color.alpha(color);
                     if (alpha == '$') {
-                        final String finalMessage = message;
-                        txtMessage.setText(finalMessage);
+                        messageText.setText(message);
+                        Toast.makeText(this, "Message successfully decoded", Toast.LENGTH_SHORT).show();
+                        return;
                     } else {
                         message += alpha;
                     }
@@ -81,26 +82,6 @@ public class DecodeActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(this, "No image captured!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_Gallery && resultCode == RESULT_OK) {
-
-            // Set image which taken from gallery to ImageView
-            try {
-                Uri imageUri = data.getData();
-                InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                capturedImage = selectedImage.copy(Bitmap.Config.ARGB_8888, true);
-                capturedImage.setHasAlpha(true);
-                image.setImageBitmap(selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
-            }
         }
     }
 }

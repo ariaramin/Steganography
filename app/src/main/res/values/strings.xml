@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">steganography</string>
-
-    <string name="decode">decode</string>
-    <string name="encode">encode</string>
-
+    <string name="app_name">Steganography</string>
+    <string name="description">Send your secret messages \n through images</string>
+    <string name="decode">Decode message</string>
+    <string name="encode">Encode message</string>
+    <string name="message_hint">Your message</string>
     <string name="save">save</string>
     <string name="gallery">gallery</string>
     <string name="camera">camera</string>
