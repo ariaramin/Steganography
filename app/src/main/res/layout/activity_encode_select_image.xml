@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:srcCompat="@drawable/default_image" />
+        app:srcCompat="@drawable/default_image" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
