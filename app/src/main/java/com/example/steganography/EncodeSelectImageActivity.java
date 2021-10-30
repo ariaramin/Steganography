@@ -115,7 +115,6 @@ public class EncodeSelectImageActivity extends AppCompatActivity {
             Intent intent = new Intent(this, EncodeActivity.class);
             intent.putExtra("image", currentPhotoPath);
             startActivity(intent);
-
         } else if (requestCode == REQUEST_IMAGE_GALLERY && resultCode == RESULT_OK) {
 
             // Set image which taken from gallery to ImageView

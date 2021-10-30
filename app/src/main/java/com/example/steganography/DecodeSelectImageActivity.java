@@ -25,7 +25,6 @@ public class DecodeSelectImageActivity extends AppCompatActivity {
     // Initialize variables
     ImageView image;
     Button galleryBtn;
-    Bitmap capturedImage;
 
     static final int REQUEST_ID = 1;
     static final int REQUEST_IMAGE_GALLERY = 3;

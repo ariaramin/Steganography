@@ -27,8 +27,6 @@ public class DecodeActivity extends AppCompatActivity {
     Bitmap capturedImage;
     Bundle extra;
 
-    static final int REQUEST_IMAGE_GALLERY = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
